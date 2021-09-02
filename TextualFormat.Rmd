@@ -1,0 +1,43 @@
+# Text format
+- When you use it to read file, it will also include the metadata or the class of the data inside it so you do not have to specify every single time you read it
+- dump or dput/dget
+
+Advantages to storing data under textual format
+- Editable
+- Longer live
+- Avoid potential crisis
+- Easy to use version tracking system like Git
+
+Cons:
+- Take up lots of space
+
+```{r}
+y <- data.frame(a=1, b="a")
+dput(y)
+# structure(list(a = 1, b = "a"), class = "data.frame", row.names = c(NA,
+# -1L))
+
+dput(y, file="y.R")
+# Create a y.R file
+
+new.y <- dget("y.R")
+new.y
+#   a b  
+# 1 1 a
+```
+- dget can only be used on one single R object
+- dump can be used on multiple R objects
+
+```{r}
+x <- "foo"
+y <- data.frame(a = 1, b="a")
+dump(c("x","y"), file = "data.R")
+rm(x,y)
+x #Error: object 'x' not found
+source("data.R")
+x #[1] "foo"
+y
+#   a b
+# 1 1 a
+```
+

@@ -62,6 +62,34 @@ Divided into 2 conceptual parts
     + For noob, ask on R-help not R-dev. r-help@r-project.org
 
 
+## Connection to the Outside World
+- Connection interface, can be made to files or to webpage
+
+1. file opens a connection to a file. Text file
+2. gzfile opens a connection to a file compressed with gzip -> gz extension
+3. bzfile opens a connection to a file compressed with bzip2 -> bzip2 extension
+4. url opens connection to a webpage
+
+r for reading
+w for writing
+a for appending
+rb, wb, ab for those above in binary mode
+
+```{r}
+con <- file("foo.txt", "r")
+data <- read.csv(con)
+close(con)
+
+The same with 
+data <- read.csv("foo.txt")
+```
+- So in the former example it is not that necessary to use the connection. Although in case like below, it can be helpful
+
+```{r}
+con <- gzfile("words.gz")
+x <- readLines(con, 10) #Read the first 10 lines
+x
+```
 
 
 
