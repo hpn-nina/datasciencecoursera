@@ -1,0 +1,100 @@
+# Reading Data
+- There are a few principal functions reading data into R
+
+```{r}
+#Reading tabular data
+read.table(file, {utils}) 
+read.csv(file, {utils})
+
+# Notice that utils can be header, sep, dec, row.names, col.names, etc
+```
+More can be found here: [URL](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html)
+
+```{r}
+#Reading lines for text file
+readLines() 
+
+#For reading in R code files(inverse of dump)
+source() and dget() for reading source code R file
+
+
+```
+More about readLines: [URL](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/readLines)
+Detail description: [URL](https://datag.org/resources/documents/december-2017/12-debarros-learn-to-use-r-reading-source-data-in-r/file)
+
+- ```load()``` for reading in saved workspace
+- ```unserialize()``` for reading binary object into R
+
+# Writing Data
+```{r}
+write.table()
+writeLines()
+dump()
+dput()
+save()
+serialize()
+```
+
+- Pairing with reading analog
+
+## Reading data file with read.table
+- Commonly used function for reading data.
+- Args: 
+    + file name
+    + header, sep, colClasses, norows, comment.char.a, skip, stringsAsFactors
+
+```{r}
+data <- read.table("foo.txt")
+
+```
+- Can be automatically read
+- Skip lines that begin with a #
+- The same with read.csv with the difference between the two with sep = ","
+
+#### Large dataset
+- Read the help page of read.table for hints
+- Make rough calculation of the memory required due to the physically storing
+- Set comment.char = "" is there are no commented lines in your files
+
+- Use the colClasses args can make it run much faster, may be twice
+    + To use, need to know class of each column in your data frame
+
+```{r}
+initial <- read.table("database.txt", nrows = 100)
+classes <- sapply(initial, class)
+tabAll <- read.table("database.txt", colClasses = classes)
+```
+- Set nrows because it helps with memory usage. Can have a mild overestimate
+- Can use wc tool in Unix to calculate the number of lines in a files
+
+Need to know before getting started
+- How much physical RAM?
+- What other applications are in use?
+- Are there other users logged into the same system?
+- What operating system?
+- Is the OS 32 or 64 bit? 64 bits provide more access to memory if you have more RAM
+
+- From rows, cols, type of data calculating the number of memory is required to store this data frame?
+- Numeric 8 bytes
+
+
+
+# Some command
+
+```ls()``` is for listing all variable in the env
+```getwd()``` to take current working directory setwd() for setting working env
+```list.files() or dir()``` is dor listing all files in working directory'
+
+```files.create()``` is for creating file in current workspace
+```{r}
+file.rename(from, to)
+file.copy(forom, to)
+file.remove(name)
+
+file.exists(name)
+file.info(name)
+
+file.path(name) #Get the path to that file
+
+dir.create(file.path("testdir2", "testdir3"), recursive = TRUE) #To create a testdir3 inside testdir 2 in the current workspace
+```

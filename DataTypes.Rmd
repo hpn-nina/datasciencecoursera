@@ -1,0 +1,309 @@
+# Data Types
+Everything in R are objects
+
+- character
+- numberic
+- integer
+- complex
+- logical
+
+Everything in vector must to be the same class.
+List can have multiple class elements.
+
+### Numbers
+- R thinks this as a numberic objects
+- Inf for infinity
+    + 1 / 0 == Inf
+    + 1 / Inf == 0
+
+- NaN is an undefined value
+
+### Attributes
+- Parts of objects in R
+- Objects can have or not have attributes:
+    + names, dimnames
+    + dimensions (matrices, array)
+    + class
+    + length
+    + other user-defined attributes/metadata
+- Can be accessed using the ``` attributes() ``` function to modify.
+
+### c()
+- Can used to create vectors of objects.
+
+```{r include=FALSE}
+x <- c(0.5,0.6) #numberic
+x <- c(TRUE, FALSE) #logical
+print(x)
+```
+
+### Mixing objects
+
+```{r}
+y <- c(1.7, 'a')     #[1] "1.7" "a"
+y <- c(TRUE,2)  #[1] 1 2
+y <- c('a',TRUE)    #[1] "a"    "TRUE"
+print(y)
+```
+
+Won't get error but it will change your objects' type.
+
+### Explicit Coercion
+- Use ``` as.* ```   function to convert one class to a another 
+```{r}
+x <- 0:6
+class(x) #[1] "integer"
+as.numeric(x) # [1] 0 1 2 3 4 5 6
+as.logical(x) # [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+as.character(x) # [1] "0" "1" "2" "3" "4" "5" "6"
+```
+
+```{python}
+x = 5
+print(x)
+class(x)
+```
+
+But when you convert character to numberic, it will be NA
+```{r}
+x <- c('a', 'b', 'c')
+as.numeric(x) 
+#[1] NA NA NA
+#Warning message:
+#NAs introduced by coercion
+```
+
+### Lists
+- Handy when need to be contain elements of different classes
+
+```{r}
+x <- list(1, 'a', TRUE, 1+4i)
+print(x)
+# Result
+# [[1]]
+# [1] 1
+
+# [[2]]
+# [1] "a"
+
+# [[3]]
+# [1] TRUE
+
+# [[4]]
+# [1] 1+4i
+```
+
+### Matrices
+- Special types of vectors
+- Have special attributes as dimensions
+- nrows and ncol
+
+```{r}
+m <- matrix(nrow = 2, ncol = 3)
+m
+#      [,1] [,2] [,3]
+# [1,]   NA   NA   NA
+# [2,]   NA   NA   NA
+dim(m) #[1] 2 3
+attributes(m)
+# $dim
+# [1] 2 3
+```
+
+- All the number are inserted into matrix by column 
+
+```{r}
+m <- matrix(1:6, nrow = 2, ncol = 1)
+m
+#      [,1]
+# [1,]    1
+# [2,]    2
+
+m <- matrix(1:6, nrow = 2, ncol = 3)
+m
+#      [,1] [,2] [,3]
+# [1,]    1    3    5
+# [2,]    2    4    6
+
+m <- matrix(1:6, nrow = 2, ncol = 4)
+# Warning message:
+# In matrix(1:6, nrow = 2, ncol = 4) :
+#   data length [6] is not a sub-multiple or multiple of the number of columns [4]
+
+```
+
+- You can also create the matrice directly from the available vector by adding the dimension attribute
+
+```{r}
+m <- 1:10
+m #[1]  1  2  3  4  5  6  7  8  9 10
+dim(m) <- c(2,5)
+m
+#      [,1] [,2] [,3] [,4] [,5]
+# [1,]    1    3    5    7    9
+# [2,]    2    4    6    8   10
+
+vector <- c(1:10)
+vector #[1]  1  2  3  4  5  6  7  8  9 10
+dim(vector) <- c(5,2)
+vector
+#      [,1] [,2]
+# [1,]    1    6
+# [2,]    2    7
+# [3,]    3    8
+# [4,]    4    9
+# [5,]    5   10
+```
+
+- Another way to create a matrice is to bind column or bind row
+- with ```{r} cbind()``` and ```{r} rbind()```
+
+```{r}
+x <- 1:3
+y <- 10:12
+cbind(x,y)
+#      x  y
+# [1,] 1 10
+# [2,] 2 11
+# [3,] 3 12
+rbind(x,y)
+#   [,1] [,2] [,3]
+# x    1    2    3
+# y   10   11   12
+```
+
+### Factors
+- Two types of factors
+    + Unordered
+    + Ordered
+        1. Not really numeric
+        2. May be professor, vice-professor, ...
+        3. Label for fitting linear model
+
+- Like an integer vector which each of them has label
+- Treated specially by modelling function like ```{r} lm() and glm()```
+- It is self-describing
+- For example: a variable that has values 'Male' or 'Female' is better than a variable that has value 1 or 2
+
+```{r}
+x <- factor(c("yes", "yes", 'no', 'yes', 'no'))
+x
+# [1] yes yes no  yes no
+# Levels: no yes
+
+table(x)
+# x
+#  no yes
+#   2   3
+
+unclass(x) #Use for displaying the integer vector with level of the attribute of no and yes
+#This is for strips out the class for a vector
+#You can see the underlying integer vector
+# 'yes' is coded as 2
+# 'no' is coded as 1
+# [1] 2 2 1 2 1
+# attr(,"levels")
+# [1] "no"  "yes"
+
+#You can define the level attribute with expression like this
+x <- factor(c("yes", "yes", "no", "yes", "no"), 
+    levels = c("yes","no" ))
+x
+# [1] yes yes no  yes no
+# Levels: yes no
+
+#The baseline level be the first level it encounter
+```
+
+### Missing values
+- Denote by NA (everything that is not used with NaN) or NaN (undefined mathematical operations)
+- ```is.na()``` is used to test objects if they are NA
+- ```is.nan()``` is used to test for NaN
+
+- NA values have a class also, so there are integer NA, character NA, etc
+- A NaN value is also NA but the converse is not true
+- NA is a more general term -> NaN can be check by ```is.na()```
+
+
+### Data Frames
+- Key data type for tabular 
+- Special *type of list* where every element of the list has to have the same length -> due to the rows
+- Each element of the list can be thought of as a column and the n of length is n of rows
+- Unlike matrices, data frames can be store different classes of objects in each column (like lists)
+
+- Data frames also have a special attribute called ```row.names```
+- Data frames usually created by calling ```{r} read.table()``` or ```{r} read.csv()```
+- Can be converted to a matrix by calling ```{r} data.matrix()```
+
+```{r}
+x <- data.frame(foo = 1:4, bar = c(T, T, F, F))
+x
+#   foo   bar
+# 1   1  TRUE
+# 2   2  TRUE
+# 3   3 FALSE
+# 4   4 FALSE
+
+nrow(x) #[1] 4
+ncol(x) #[1] 2
+```
+
+**Python**
+- Data Frame in Python is quite the same semantic meaning
+- Need to import pandas
+
+```{python}
+import pandas as pd
+# first create a list
+lst = {'name': ['Nhu', 'Minh']}
+df = pd.DataFrame(lst)
+print(df)
+```
+
+### Names
+- R objects can also ave names, which is very useful for writing readable code and self-describing objects
+
+```{r}
+x <- 1:3
+names(x) # NULL
+names(x) <- c("foo", 'bar', 'norf')
+x
+#  foo  bar norf
+#    1    2    3
+names(x) #[1] "foo"  "bar"  "norf"
+```
+
+```{r}
+x <- 1:6
+names(x) # NULL
+names(x) <- c("foo", 'bar', 'norf')
+x
+#  foo  bar norf <NA> <NA> <NA>
+#    1    2    3    4    5    6
+names(x) #[1] "foo"  "bar"  "norf" NA     NA     NA
+```
+
+```{r}
+x <- list(a = 1, b = 2, c = 3)
+x
+# $a
+# [1] 1
+
+# $b
+# [1] 2
+
+# $c
+# [1] 3
+```
+
+- Matrices can have name to, this is called dimnames
+
+```{r}
+m <- matrix(1:4, nrow = 2, ncol = 2)
+dimnames(m) <- list(c('a','b'), c('c','d'))
+m
+#   c d
+# a 1 3
+# b 2 4
+```
+
