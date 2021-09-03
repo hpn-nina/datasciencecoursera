@@ -93,5 +93,12 @@ x <- readLines(con, 10) #Read the first 10 lines
 x
 ```
 
+# Coding Standard
+- Indenting your code
+- Limit the width of your code (80 columns)
+- Write your code under text type file
+- Limit the length of particular function
+- Function should only do what they say they are
+
 
 
