@@ -1,4 +1,6 @@
 # Introduction
+Hi, this is named datasciencecoursera although I do all type of work here, playing around and to be exact it contains all of mine study starting in Data field. 
+There are all types of  learning here and you may find sth critical to your study. SO LET'S GET STARTED.
 ## This is a markdown file
 What is R?
 R was originally named after S language which was used as an internal statistical analysis
