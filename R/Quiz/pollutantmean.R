@@ -23,7 +23,6 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
 
         for (row in 1:length(file[, pollutant])) {
             if (!is.na(file[row, pollutant])) {
-                file[row, pollutant]
                 total <- total + file[row, pollutant]
                 count <- count + 1
             }
