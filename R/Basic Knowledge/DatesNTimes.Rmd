@@ -1,0 +1,96 @@
+# Dates and Times
+
+## Introduction
+- Dates are represented by the *Date* class
+- Times are represented by the *POSIXct* or the *POSIXIt* class
+- Dates are stored internally as the number of days since 1/1/1970
+- Times are stored internally as the number of seconds since 1/1/1970
+
+```{r}
+x <- as.Date('1970-01-01')
+x #[1] "1970-01-01"
+unclass(x) #[1] 0
+
+```
+
+## Times
+- POSIXct stores as big integer
+- POSIXIt stores times as lists, useful data
+
+- weekdays: day of the week
+- months: month name
+- quarters: quarter number
+
+```{r}
+x <- Sys.time()
+x #[1] "2021-09-03 15:00:30 +07" 
+
+p <- as.POSIXct(x)
+p #[1] "2021-09-03 15:00:30 +07"
+unclass(p) #[1] 1630656031
+names(unclass(p))
+# NULL
+
+p <- as.POSIXlt(x)
+unclass(p)
+# $sec
+# [1] 30.68955
+
+# $min
+# [1] 0
+
+# $hour
+# [1] 15
+
+# $mday
+# [1] 3
+
+# $mon
+# [1] 8
+
+# $year
+# [1] 121
+
+# $wday
+# [1] 5
+
+# $yday
+# [1] 245
+
+# $isdst
+# [1] 0
+
+# $zone
+# [1] "+07"
+
+# $gmtoff
+# [1] 25200
+
+# attr(,"tzone")
+# [1] ""    "+07" "   "
+names(unclass(p))
+# [1] "sec"    "min"    "hour"   "mday"   "mon"    "year"   "wday"   "yday"
+# [9] "isdst"  "zone"   "gmtoff"
+
+p$sec #[1] 30.68955
+
+
+#strptime function in order your dates are written in a different format
+datestring <- c("January 10, 2012 10:40", "December 9, 2011 9:10")
+x <- strptime(datestring, "%B %d, %Y %H:%M")
+x
+#[1] "2012-01-10 10:40:00 +07" "2011-12-09 09:10:00 +07"
+
+class(x)
+#[1] "POSIXlt" "POSIXt"
+
+x-x
+#Time differences in secs
+#[1] 0 0
+
+x <- as.POSIXct("2012-01-10 10:40:00 +07")
+y <- as.POSIXct("2011-12-09 09:10:00 +07", tz = "GMT")
+
+y - x
+#Time difference of -31.77083 days  
+```
