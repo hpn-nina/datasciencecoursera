@@ -100,5 +100,28 @@ x
 - Limit the length of particular function
 - Function should only do what they say they are
 
+# Debug
+- Ask yourself
+    - Input? How you have call the function?
+    - What is your expectation?
+    - What did you get?
+    - What is the difference?
+    - Were your expectations correct in the first place?
+    - Can you reproduce the problem?
+
+- Tools:
+
+1. traceback
+- Prints out the call stack after an error occurs
+- Does nothing if there is not any error
+2. debug
+- flags a function for debug mode
+3. browser
+- Can be called anywhere
+- suspends the execution when being called and put the function in debug mode
+4. trace
+- allow insert debugging code into a function without modify the source code
+5. recover
+- allow to modify the error (Error handle)
 
 

@@ -1,0 +1,56 @@
+---
+title: "How to debug in R"
+output: rmarkdown::github_document
+---
+
+# Tools
+## traceback
+
+```{r}
+mean(n)
+#Error in mean(n) : object 'n' not found
+traceback()
+#1: mean(n)
+
+
+```
+
+- Should be call right after the error exist
+
+## debug
+
+```{r}
+debug(lm)
+lm(y - x)
+# n for next until it get to the line of error
+
+
+
+```
+
+## recover
+
+```{r}
+options(error = recover)
+read.csv("non")
+
+# Error in file(file, "rt") : cannot open the connection
+# In addition: Warning message:
+# In file(file, "rt") : cannot open file 'non': 
+# No such file or directory
+
+# Enter a frame number, or 0 to exit
+
+# 1: read.csv("non")
+# 2: read.table(file = file, header = header, sep = sep, quote = quote, dec = de
+# 3: file(file, "rt")
+
+# Selection: 
+
+
+```
+- Can see what is going on in each function call
+
+# Summary
+- Only the error will make the program stop/ fatal
+- Remember things in the other md file.
