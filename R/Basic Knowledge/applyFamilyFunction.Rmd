@@ -1,0 +1,183 @@
+---
+title: "Learn about the apply function family"
+output: rmarkdown::github_document
+---
+
+# Lapply
+- Apply the function to a list 
+- Retunr a list, regardless of the class of the input
+- Usually use with anonymous function
+```{r}
+x <- list(a = 1:5, b = rnorm(10))
+lapply(x, mean)
+
+$a
+[1] 3
+
+$b
+[1] -0.0474927
+ 
+
+x <- 1:4
+lapply(x, runif)
+# [[1]]
+# [1] 0.6922116
+
+# [[2]]
+# [1] 0.6281319 0.3957540
+
+# [[3]]
+# [1] 0.1426731 0.7342085 0.8267546
+
+# [[4]]
+# [1] 0.02391304 0.86053427 0.53900690 0.21644929
+
+
+```
+
+runif is a function with n elements vector
+
+## Sapply
+- Simplied version of lapply
+
+# Apply
+- Use to evaluate a function, usually anonymous one
+- Apply over a margins of an array
+- Involve less typing
+
+```{r}
+str(apply)
+#function (X, MARGIN, FUN, ..., simplify = TRUE)
+
+x <- matrix(rnorm(200), 20, 10)
+apply(x, 2, mean) #Keep the second dim and collapse the first one => 10 items in this vector represent 10 rows
+# [1] -0.59091016 -0.15505849 -0.05137849  0.25471673  0.08686630 -0.33403661
+#  [7] -0.16510079  0.25139287 -0.19626585 -0.19734054
+# Take the mean on each column
+
+apply(x, 1, sum)
+#Calculate sum of each row
+
+rowSums()
+rowMeans()
+colMeans()
+...
+```
+
+# Mapply
+- Multivariate apply of the above function
+
+```{r}
+str(mapply)
+#function (FUN, ..., MoreArgs = NULL, SIMPLIFY 
+#               = TRUE, USE.NAMES = TRUE)
+
+list(rep(1, 4), rep(2, 3), rep(3,2), rep(4,1))
+mapply(rep, 1:4, 4:1)
+# Same result
+
+```
+
+# Tapply
+- Useful to apply function on a subset of vector
+
+```{r}
+x <- c(rnorm(10), runif(10), rnorm(10,1))
+f <- gl(3, 10)
+f
+tapply(x, f, mean)
+#         1         2         3
+# 0.4684564 0.6691001 1.1009399
+# Take group mean
+# Have been simplyfied
+
+
+```
+
+# Split
+- Take a vector or object and a factor or list of factors
+- The object will be spilted into group of factor
+
+```{r}
+split(x, f)
+# $`1`
+#  [1]  0.4300003  0.7141608  1.4635252  0.7070638  0.4543599  1.6778389
+#  [7] -0.5929200  1.0397581 -0.9093814 -0.2998418
+
+# $`2`
+#  [1] 0.5655138 0.9520879 0.8892222 0.7891363 0.5976622 0.1350595 0.8145887
+#  [8] 0.1664357 0.8492442 0.9320504
+
+# $`3`
+#  [1]  0.3187657  1.6585809 -0.4013755  1.9343462  0.7293687 -1.4389543
+#  [7]  1.9436892  1.6228836  1.2888585  3.3532355
+
+
+```
+
+- It is like tapply but without the apply function on the objects
+
+```{r}
+s <- split(airquality, airquality$Month)
+s
+lapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")]))
+# $`5`
+#    Ozone  Solar.R     Wind 
+#       NA       NA 11.62258
+
+# $`6`
+#     Ozone   Solar.R      Wind
+#        NA 190.16667  10.26667
+
+# $`7`
+#      Ozone    Solar.R       Wind
+#         NA 216.483871   8.941935 
+
+# $`8`
+#    Ozone  Solar.R     Wind
+#       NA       NA 8.793548
+
+# $`9`
+#    Ozone  Solar.R     Wind
+#       NA 167.4333  10.1800
+
+sapply(s, function(x) colMeans(x[, c("Ozone", "Solar.R", "Wind")]))
+#              5         6          7        8        9
+# Ozone         NA        NA         NA       NA       NA
+# Solar.R       NA 190.16667 216.483871       NA 167.4333
+# Wind    11.62258  10.26667   8.941935 8.793548  10.1800
+
+
+#Spilting on More than One level
+x <- rnorm(10)
+f1 <- gl(2,5)
+f2 <- gl(5,2)
+
+f1
+#  [1] 1 1 1 1 1 2 2 2 2 2
+# Levels: 1 2
+f2
+#  [1] 1 1 2 2 3 3 4 4 5 5
+# Levels: 1 2 3 4 5
+
+interaction(f1,f2)
+# [1] 1.1 1.1 1.2 1.2 1.3 2.3 2.4 2.4 2.5 2.5  
+# Levels: 1.1 2.1 1.2 2.2 1.3 2.3 1.4 2.4 1.5 2.5
+
+str(split(x, list(f1,f2)))
+# List of 10
+#  $ 1.1: num [1:2] -1.511 -0.151
+#  $ 2.1: num(0)
+#  $ 1.2: num [1:2] 1.026 -0.128
+#  $ 2.2: num(0)
+#  $ 1.3: num 0.732
+#  $ 2.3: num 0.803
+#  $ 1.4: num(0)
+#  $ 2.4: num [1:2] 0.536 -1.179
+#  $ 1.5: num(0)
+#  $ 2.5: num [1:2] 0.0443 -0.8934
+
+#If specified drop = TRUE, it will drop the empty level
+
+```
+
