@@ -1,4 +1,7 @@
-# Subsetting
+---
+title: "Learn about how subsetting work in R"
+output: rmarkdown::github_document
+---
 
 ## Vectors
 There are 3 ways that can be extract subsets of R objects

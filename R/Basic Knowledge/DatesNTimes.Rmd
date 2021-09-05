@@ -1,4 +1,7 @@
-# Dates and Times
+---
+title: "Learn about dates and times format in R"
+output: rmarkdown::github_document
+---
 
 ## Introduction
 - Dates are represented by the *Date* class

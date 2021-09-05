@@ -1,3 +1,7 @@
+---
+title: "Quiz 2 Week 2 R Programming Coursera"
+output: rmarkdown::github_document
+---
 1.
 Question 1
 

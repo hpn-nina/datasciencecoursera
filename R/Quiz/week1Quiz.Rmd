@@ -1,5 +1,7 @@
-# Quiz 1
-
+---
+title: "Quiz 1 - Week 1 - R Programming Coursera"
+output: rmarkdown::github_document
+---
 1. The R language is a dialect of which of the following programming languages?
 -> S
 
