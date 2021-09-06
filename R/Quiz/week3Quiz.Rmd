@@ -1,0 +1,71 @@
+---
+title: "Week 3 Quiz R Programming - Coursera"
+output: rmarkdown::github_document
+---
+
+1. Take a look at the 'iris' dataset that comes with R. The data can be loaded with the code:
+
+```{r}
+library(datasets)
+data(iris)
+
+```
+There will be an object called 'iris' in your workspace. 
+In this dataset, what is the mean of 'Sepal.Length' for the species virginica? 
+Please round your answer to the nearest whole number.
+
+```{r}
+iris
+names(iris)
+library(data.table)
+iris_dt <- as.data.table(iris)
+iris_dt[Species == "virginica",round(mean(Sepal.Length)) ]
+# 7
+
+tapply(iris$Sepal.Length, iris$Species, mean)
+#setosa versicolor  virginica 
+#     5.006      5.936      6.588
+```
+
+2. Continuing with the 'iris' dataset from the previous Question, what R code returns a vector of the means of the variables 'Sepal.Length', 'Sepal.Width', 'Petal.Length', and 'Petal.Width'?
+
+```{r}
+colMeans(iris[,1:4])
+
+apply(iris[, 1:4], 2, mean)
+```
+
+3. Load the 'mtcars' dataset in R with the following code
+
+```{r}
+library(datasets)
+data(mtcars)
+
+dim(mtcars)
+names(mtcars)
+
+sapply(split(mtcars$mpg, mtcars$cyl), mean)
+
+with(mtcars, tapply(mpg, cyl, mean))
+
+tapply(mtcars$mpg, mtcars$cyl, mean)
+
+```
+
+4. Continuing with the 'mtcars' dataset from the previous Question, what is the absolute difference between the average horsepower of 4-cylinder cars and the average horsepower of 8-cylinder cars?
+
+(Please round your final answer to the nearest whole number. Only enter the numeric result and nothing else.)
+
+```{r}
+spl <- split(mtcars, mtcars$cyl)
+spl
+mean(spl$'4'$hp) - mean(spl$'8'$hp)
+#[1] -126.5779
+```
+
+5. If you run
+```{r}
+debug(ls)
+ls
+```
+-> Execution of 'ls' will suspend at the beginning of the function and you will be in the browser.
