@@ -181,3 +181,13 @@ str(split(x, list(f1,f2)))
 
 ```
 
+# Sumary
+
+apply() - Input: array (matrices); margin (which axis to work on); function (apply on the data)
+
+lapply() and sapply() - Input: list; function
+
+vapply() - like sapply() but need to specified return value 
+
+tapply() - Input: list, vector (can have different length), factor vector, function
+
