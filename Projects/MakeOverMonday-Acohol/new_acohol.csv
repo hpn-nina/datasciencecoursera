@@ -1,0 +1,26 @@
+,Rank,Country,Liters of pure alcohol consumed per capita,continent_code,country_code,population
+0,1,Belarus,17.5,EU,BLR,9398861.0
+1,2,Moldova,16.8,EU,MDA,2617820.0
+2,3,Lithuania,15.4,EU,LTU,2794700.0
+3,4,Russia,15.1,EU,RUS,144104080.0
+4,5,Romania,14.4,EU,ROU,19286123.0
+5,6,Ukraine,13.9,EU,UKR,44134693.0
+6,7,Andorra,13.8,EU,AND,77265.0
+7,8,Hungary,13.3,EU,HUN,9749763.0
+8,9,Czech Republic,13.0,EU,CZE,10698896.0
+9,10,Slovakia,13.0,EU,SVK,5458827.0
+10,11,Portugal,12.9,EU,PRT,10305564.0
+11,12,Serbia,12.6,EU,SRB,6908224.0
+12,13,Grenada,12.5,NA,GRD,112519.0
+13,14,Poland,12.5,EU,POL,37950802.0
+14,15,Latvia,12.3,EU,LVA,1901548.0
+15,16,Finland,12.3,EU,FIN,5530719.0
+16,17,South Korea,12.3,AS,KOR,51780579.0
+17,18,France,12.2,EU,FRA,67391582.0
+18,19,Australia,12.2,OC,AUS,25687041.0
+19,20,Croatia,12.2,EU,HRV,4047200.0
+20,21,Ireland,11.9,EU,IRL,4994724.0
+21,22,Luxembourg,11.9,EU,LUX,632275.0
+22,23,Germany,11.8,EU,DEU,83240525.0
+23,24,Slovenia,11.6,EU,SVN,2100126.0
+24,25,United Kingdom,11.6,EU,GBR,67215293.0
