@@ -1,0 +1,54 @@
+Plot the 30-day mortality rates for heart attack
+```{r}
+outcome <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
+head(outcome)
+summary(outcome)
+names(outcome)
+ncol(outcome) #46
+nrow(outcome) #4706
+```
+
+To make a simple histogram of the 30-day death rates from heart attack (column 11 in the outcome dataset),
+run
+
+```{r}
+outcome[, 11] <- as.numeric(outcome[, 11])
+hist(outcome[, 11])
+```
+
+The best hospital in a state
+
+```{r}
+library(collections)
+
+
+best <- function(state, outcome) {
+    result <- c()
+
+    ref <- dict()
+    ref$set("heart attack", 11)$set("heart failure", 17)$set("pneumonia", 23)
+    
+    ## Read outcome data
+    csv <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
+    # Take out the column where the disease are in
+
+
+    ## Check that state and outcome are valid
+    if(outcome != "heart attack" & outcome != "heart failure" 
+            & outcome != "pneumonia") {
+        return("invalid outcome")
+    }
+    state_list <- unique(outcome["State"])
+    if(!isin(state_list, state)) {
+        return("invalid state")
+    }
+
+
+    ## Return hospital name in that state with lowest 30-day death rate
+    result <- sort(result)
+    return(result[0])
+}
+
+
+best("TT", "heart attack")
+```

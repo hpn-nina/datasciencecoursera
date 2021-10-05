@@ -1,0 +1,43 @@
+1632754658525	geckodriver	INFO	Listening on 127.0.0.1:52081
+1632754661613	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ASUS\\AppData\\Local\\Temp\\rust_mozprofile5AwYsl"
+1632754662337	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\ASUS\\AppData\\Local\\Temp\\rust_mozprofile5AwYsl\\search.json.mozlz4", (void 0)))
+1632754665123	Marionette	INFO	Listening on port 52089
+1632754665325	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1632754724113	Marionette	INFO	Stopped listening on port 52089
+JavaScript error: resource:///modules/Interactions.jsm, line 230: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+JavaScript error: chrome://remote/content/marionette/cert.js, line 55: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1632754887133	geckodriver	INFO	Listening on 127.0.0.1:52660
+1632754890195	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ASUS\\AppData\\Local\\Temp\\rust_mozprofileQ0Ry9h"
+1632754890668	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\ASUS\\AppData\\Local\\Temp\\rust_mozprofileQ0Ry9h\\search.json.mozlz4", (void 0)))
+1632754893231	Marionette	INFO	Listening on port 52670
+1632754893397	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: uncaught exception: undefined
+JavaScript error: https://static-exp1.licdn.com/sc/h/cerqy36gmqxprkhnob0fzmlx8, line 2: TypeError: e is undefined
+JavaScript error: https://static-exp1.licdn.com/sc/h/cerqy36gmqxprkhnob0fzmlx8, line 2: TypeError: e is undefined
+JavaScript error: https://static-exp1.licdn.com/sc/h/cerqy36gmqxprkhnob0fzmlx8, line 2: TypeError: e is undefined
+JavaScript error: https://static-exp1.licdn.com/sc/h/cerqy36gmqxprkhnob0fzmlx8, line 2: TypeError: e is undefined
+JavaScript error: , line 0: uncaught exception: undefined
+JavaScript error: https://static-exp1.licdn.com/sc/h/cerqy36gmqxprkhnob0fzmlx8, line 2: TypeError: e is undefined
+JavaScript error: https://static-exp1.licdn.com/sc/h/cerqy36gmqxprkhnob0fzmlx8, line 2: TypeError: e is undefined
+JavaScript error: https://static-exp1.licdn.com/sc/h/cerqy36gmqxprkhnob0fzmlx8, line 2: TypeError: e is undefined
+JavaScript error: https://static-exp1.licdn.com/sc/h/cerqy36gmqxprkhnob0fzmlx8, line 2: TypeError: e is undefined
+JavaScript error: https://static-exp1.licdn.com/sc/h/cerqy36gmqxprkhnob0fzmlx8, line 2: TypeError: e is undefined
+JavaScript error: https://static-exp1.licdn.com/sc/h/cerqy36gmqxprkhnob0fzmlx8, line 2: TypeError: e is undefined
+JavaScript error: https://static-exp1.licdn.com/sc/h/cerqy36gmqxprkhnob0fzmlx8, line 2: TypeError: e is undefined
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+JavaScript error: , line 0: NS_ERROR_NOT_AVAILABLE
+1632788513379	Marionette	INFO	Stopped listening on port 52670
+JavaScript error: resource:///modules/Interactions.jsm, line 230: NS_ERROR_FAILURE: Component returned failure code: 0x80004005 (NS_ERROR_FAILURE) [nsIUserIdleService.removeIdleObserver]
+JavaScript error: chrome://remote/content/marionette/cert.js, line 55: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+

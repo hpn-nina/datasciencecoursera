@@ -1,0 +1,112 @@
+# Data
+Data are values of quantitative or qualitative variables, belong to a set of items.
+So the set of items might be the population or the set of objects that you might be interested in.
+## Raw Data
+- Original source of data
+- Hard to straight-forwardly use for data analyses
+- Include the processing 
+- May need to be processed once or several times.
+- String, binary, unformatted Excel, JSON from Twitter API.
+
+- Haven't been run through any programme
+## Processed data
+- Data ready for analysis
+- Extracting, subsetting, transforming
+- All step should be recorded -> Understanding the pipeline
+
+## Tidy data
+- Code book desc each variables and its values in the tidy data set
+- Explicit and exact recipe you use to go from raw to tidy
+- Each variable you measure should be in one column
+- Each different observation of that variable should be in a different row
+- There should be one table for each kind of variable
+- If having multiple tables, should have a column in the data where it could be linked.
+
+*Tips*:
+- Including a row on top as header name
+- Make variable name human readable
+- One file per table
+
+## Code book
+- Including units (information about the variables)
+- Summary choices you made
+- Experimental study design you used
+
+*Tips*:
+- Common format is a text file
+- Should have a section called "Study design" that has a thorough desc of how you collected the data
+- Section called "Code book" having desc and its units
+
+
+## Instruction list
+- A computer script
+- Input should be raw data
+- Output the processed, tidy data
+- No params is needed to Include
+
+In case of not possible processing all the data by scripts:
+- Should provide instructions
+- Giving all the parameter including, which version
+- The more explicit the better it is
+
+
+# Collecting data
+- Remember to set your working directory.
+- Windown use backlash while programming languages usually use forthlash
+
+## Checking for and creating directory
+- file.exist("dirName")
+- dir.create("dirName")
+
+## Download file
+- download.file(params)
+- Important params: url, destfile, method
+- Useful for downloading tab-delimited, csv, text file
+- https can used method curl (default method of Window)
+- Remember to keep track of the date
+- If the file is big, it will take a while
+- Should record when you downloaded to check the version of the file
+
+## Reading local file
+- read.table(), read.csv(), read.csv2()
+- read.table() can be slow, require more data than other function
+- na.strings() to set the character that represents a missing value
+- skip to indicate the number of lines to skip before starting to read
+- When having trouble with flat files which are having qoutation marks ` or " placed in data values,
+setting qoute="" often resolves these.
+
+### Reading excel files
+- Load the library(xlxs)
+- use read.xlsx()
+- Remember to call the sheetIndex
+- Can read specific rows and columns
+
+#### Notes:
+- write.xlxs() for writing
+- read.xlxs2() unstable but faster
+- XLConnect has more options for writing and manipulating Excel files
+- XLConnect vignette to start
+
+### Rading XML
+- Extensible markup language
+- Used to stored structured data
+- Widely used in internet applications
+- Basis of web scraping
+
+#### Tags, Elements and Attributes
+- Start and closed tag like HTML
+- Empty tag like img tag <img/>
+
+- Elements like components, tag but another name
+- Having attributes just like HTML alt, src
+
+- library(XML)
+- xmlTreeParse() function for reading structure XML files
+- xmlRoot() access the document
+- xmlName() to get name 
+
+- Can be directly access parts of XML document
+- rootNode[[1]] -> first sub component
+
+- Can go through by xmlSApply(rootNode, xmlValues)
+- Go through and 
